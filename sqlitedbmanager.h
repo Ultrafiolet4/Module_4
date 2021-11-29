@@ -25,7 +25,7 @@ public:
 
     void connectToDataBase();
     QSqlDatabase getDB();
-    bool inserIntoTable(const QString tableName, const QVariantList &data);
+    //    bool inserIntoTable(const QString tableName, const QVariantList &data);
 };
 
 #endif // SQLITEDBMANAGER_H

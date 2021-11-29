@@ -19,9 +19,7 @@ class Admin : public QWidget
     Q_OBJECT
 
 public:
-
-    Admin(QWidget *parent = nullptr);
-    explicit Admin(DBManager* dbManager,QWidget *parent = nullptr);
+    explicit Admin(QWidget *parent = nullptr);
 
     void paintEvent(QPaintEvent *);
 
@@ -31,7 +29,7 @@ private:
     Ui::Admin *ui;
 
     DBManager *db;
-    QSqlTableModel  *model;
+    QSqlTableModel *model_avto, *model_postach, *model_zmovn;
 };
 
 #endif // ADMIN_H

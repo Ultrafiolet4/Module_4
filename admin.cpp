@@ -1,51 +1,27 @@
 #include "admin.h"
-#include "ui_admin.h"
+#include <QSqlTableModel>
 #include "dbmanager.h"
 #include "sqlitedbmanager.h"
+#include "ui_admin.h"
 
-Admin::Admin(DBManager* dbManager,QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Admin),
-    db(dbManager)
+Admin::Admin(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Admin)
 {
     ui->setupUi(this);
     db = SqliteDBManager::getInstance();
     db->connectToDataBase();
 
-    QSqlQuery *query=new QSqlQuery();
-
-    if(!query->exec("CREATE TABLE avto(id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                   "marka TEXT,"
-                   "model TEXT,"
-                   "quality TEXT,"
-                   "country TEXT,"
-                   "type TEXT,"
-                   "price INTEGER,"
-                   "dtp TEXT,"
-                   "stan TEXT,"
-                   "kpp TEXT,"
-                   "fuel TEXT,"
-                   "drive TEXT,"
-                   "fuelcost INTEGER,"
-                   "capacity INTEGER,"
-                   "power INTEGER,"
-                   "run INTEGER,"
-                   "doors INTEGER,"
-                   "places INTEGER,"
-                   "color TEXT,"
-                   "vincode TEXT)"))
-    {
-        qDebug()<<query->lastError().text();
-    }
-
-
+    model_avto = new QSqlTableModel(this, db->getDB());
+    model_avto->setTable("avto");
+    ui->avto_vw->setModel(model_avto);
+    model_avto->select();
 }
 
 void Admin::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.drawPixmap(this->rect(),QPixmap(":/img/customerred.png").scaled(this->size()));
-
 }
 
 Admin::~Admin()
