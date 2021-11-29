@@ -25,15 +25,22 @@ private slots:
 
     void on_alternative_pb_clicked();
 
+
 private:
     Ui::Customer *ui;
     QString styleButton;
     QColor from,to;
 
+
     void colorizeFirst(int color);
     void colorizeFirstPrice(int color);
     void colorizeLast(int color);
     void colorizeLastPrice(int color);
+
+    void setValue_fromyear(int value);
+    void setValue_toyear(int value);
+    void setValue_fromprice(int value);
+    void setValue_toprice(int value);
 };
 
 #endif // CUSTOMER_H

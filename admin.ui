@@ -14,16 +14,16 @@
    <string>Form</string>
   </property>
   <layout class="QFormLayout" name="formLayout_4">
-   <item row="1" column="1">
-    <widget class="QTableView" name="admin_vw"/>
-   </item>
-   <item row="1" column="0">
-    <widget class="QTreeView" name="marka_tr"/>
-   </item>
-   <item row="2" column="0" colspan="2">
+   <item row="0" column="0" colspan="2">
     <widget class="QTabWidget" name="tabWidget">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="avto_tb">
       <attribute name="title">

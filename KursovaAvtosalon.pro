@@ -11,6 +11,7 @@ CONFIG += c++11
 
 SOURCES += \
     admin.cpp \
+    auto.cpp \
     customer.cpp \
     dbmanager.cpp \
     main.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     admin.h \
+    auto.h \
     customer.h \
     dbmanager.h \
     mainwindow.h \

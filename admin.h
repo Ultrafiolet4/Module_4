@@ -6,6 +6,11 @@
 #include <QPainter>
 #include <QSqlError>
 #include <QDebug>
+#include <QDialog>
+#include <QLabel>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QScrollArea>
 
 class QSqlTableModel;
 class DBManager;
@@ -25,11 +30,15 @@ public:
 
     ~Admin();
 
+private slots:
+    void on_add_pb_clicked();
+
 private:
     Ui::Admin *ui;
 
     DBManager *db;
-    QSqlTableModel *model_avto, *model_postach, *model_zmovn;
+    QSqlTableModel *model_avto, *model_postach, *model_zamovl;
+
 };
 
 #endif // ADMIN_H

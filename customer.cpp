@@ -35,6 +35,8 @@ Customer::Customer(QWidget *parent) :
     ui->lastprice_lbl->setStyleSheet("color: rgb(255, 255, 255)");
     ui->first2price_lbl->setStyleSheet("color: rgb(255, 255, 255)");
     ui->last2price_lbl->setStyleSheet("color: rgb(255, 255, 255)");
+    ui->year_lbl->setStyleSheet("color: rgb(255, 255, 255)");
+    ui->price_lbl->setStyleSheet("color: rgb(255, 255, 255)");
 
     ui->first_sld->setMinimum(0);
     ui->lastprice_sld->setMinimum(0);
@@ -49,6 +51,11 @@ Customer::Customer(QWidget *parent) :
     connect(ui->firstprice_sld, &QSlider::valueChanged, this, &Customer::colorizeFirstPrice);
     connect(ui->last_sld, &QSlider::valueChanged, this, &Customer::colorizeLast);
     connect(ui->lastprice_sld, &QSlider::valueChanged, this, &Customer::colorizeLastPrice);
+
+    connect(ui->first_sld,&QSlider::valueChanged,this,&Customer::setValue_fromyear);
+    connect(ui->last_sld,&QSlider::valueChanged,this,&Customer::setValue_toyear);
+    connect(ui->firstprice_sld,&QSlider::valueChanged,this,&Customer::setValue_fromprice);
+    connect(ui->lastprice_sld,&QSlider::valueChanged,this,&Customer::setValue_toprice);
 
     colorizeFirst(ui->first_sld->value());
     colorizeFirstPrice(ui->firstprice_sld->value());
@@ -103,11 +110,59 @@ Customer::~Customer()
 }
 
 
-
-
 void Customer::on_alternative_pb_clicked()
 {
-    QDialog *alt_menu=new QDialog;
+
 
 }
+
+void Customer::setValue_fromyear(int value)
+{
+    ui->first_sld->setMaximum(200000);
+    value = ui->first_sld->value();
+    QString text = QString::number(value);
+    ui->fromyear_led->setText(text);
+    if(value==0)
+    {
+        ui->fromyear_led->setText("");
+    }
+}
+
+void Customer::setValue_toyear(int value)
+{
+    ui->last_sld->setMaximum(200000);
+    value = ui->last_sld->value();
+    QString text = QString::number(value);
+    ui->toyear_led->setText(text);
+    if(value==0)
+    {
+        ui->toyear_led->setText("");
+    }
+}
+
+void Customer::setValue_fromprice(int value)
+{
+    ui->firstprice_sld->setMaximum(200000);
+    value = ui->firstprice_sld->value();
+    QString text = QString::number(value);
+    ui->fromprice_led->setText(text);
+    if(value==0)
+    {
+        ui->fromprice_led->setText("");
+    }
+}
+
+void Customer::setValue_toprice(int value)
+{
+    ui->lastprice_sld->setMaximum(200000);
+    value = ui->lastprice_sld->value();
+    QString text = QString::number(value);
+    ui->toprice_led->setText(text);
+    if(value==0)
+    {
+        ui->toprice_led->setText("");
+    }
+}
+
+
 

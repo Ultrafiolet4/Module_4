@@ -115,6 +115,7 @@ bool SqliteDBManager::createTables()
         qDebug() << query.lastError().text();
         return false;
     }
+    return true;
 }
 
 /* Методи для підключення до бази даних
@@ -135,3 +136,9 @@ QSqlDatabase SqliteDBManager::getDB()
 {
     return db;
 }
+
+//bool SqliteDBManager::inserIntoTable()
+//{
+
+//    return true;
+//}
