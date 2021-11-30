@@ -84,7 +84,10 @@ void Auto::setPlaces(int places){
     this->places=places;
 }
 
-
+void Auto::setYear(int year)
+{
+    this->year = year;
+}
 
 QString Auto::getMarka(){
     return marka;
@@ -133,6 +136,11 @@ QString Auto::getColor(){
 
 QString Auto::getVincode(){
     return vincode;
+}
+
+int Auto::getYear()
+{
+    return year;
 }
 
 int Auto::getPrice(){

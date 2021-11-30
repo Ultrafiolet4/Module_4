@@ -3,6 +3,7 @@
 
 #include <QSqlDatabase>
 #include <QVariantList>
+#include "auto.h"
 
 class DBManager
 {
@@ -11,7 +12,7 @@ public:
 
     virtual void connectToDataBase() = 0;
     virtual QSqlDatabase getDB() = 0;
-//    virtual bool inserIntoTable(const QString tableName, const QVariantList &data) = 0;
+    virtual bool inserIntoTable(Auto) = 0;
 };
 
 #endif // DBMANAGER_H

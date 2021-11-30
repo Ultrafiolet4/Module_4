@@ -1,6 +1,7 @@
 #ifndef SQLITEDBMANAGER_H
 #define SQLITEDBMANAGER_H
 
+#include <auto.h>
 #include <dbmanager.h>
 
 #define DATABASE_HOSTNAME   "Avtosalon_host"
@@ -25,7 +26,7 @@ public:
 
     void connectToDataBase();
     QSqlDatabase getDB();
-//    bool inserIntoTable();
+    bool inserIntoTable(Auto avto);
 };
 
 #endif // SQLITEDBMANAGER_H

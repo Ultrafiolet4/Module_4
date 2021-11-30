@@ -1,16 +1,18 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include <QWidget>
-#include <QSqlQuery>
-#include <QPainter>
-#include <QSqlError>
+#include <QComboBox>
 #include <QDebug>
 #include <QDialog>
+#include <QFileDialog>
 #include <QLabel>
 #include <QLineEdit>
-#include <QComboBox>
+#include <QPainter>
+#include <QPushButton>
 #include <QScrollArea>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QWidget>
 
 class QSqlTableModel;
 class DBManager;

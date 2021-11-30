@@ -137,8 +137,34 @@ QSqlDatabase SqliteDBManager::getDB()
     return db;
 }
 
-//bool SqliteDBManager::inserIntoTable()
-//{
+bool SqliteDBManager::inserIntoTable(Auto avto)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO "
+                  "avto(marka,model,quality,country,type,price,dtp,pathpicture,stan,kpp,fuel,drive,"
+                  "capacity,power,"
+                  "run,doors,places,color,vincode)"
+                  "VALUES(:Marka,:Model,:Quality,:Country,:Type,:Price,:Dtp,:Pathpiture,"
+                  ":Stan,:Kpp,:Fuel,:Drive,:Capacity,:Power,:Run,:Doors,:Places,:Color,:Vincode)");
+    query.bindValue(":Marka", avto.getMarka());
+    query.bindValue(":Model", avto.getModel());
+    query.bindValue(":Quality", avto.getQuality());
+    query.bindValue(":Country", avto.getCountry());
+    query.bindValue(":Type", avto.getType());
+    query.bindValue(":Price", avto.getPrice());
+    query.bindValue(":Dtp", avto.getDtp());
+    query.bindValue(":Pathpicture", avto.getPathPicture());
+    query.bindValue(":Stan", avto.getStan());
+    query.bindValue(":Kpp", avto.getKpp());
+    query.bindValue(":Fuel", avto.getFuel());
+    query.bindValue(":Drive", avto.getDrive());
+    query.bindValue(":Capacity", avto.getCapacity());
+    query.bindValue(":Power", avto.getPower());
+    query.bindValue(":Run", avto.getRun());
+    query.bindValue(":Doors", avto.getDoors());
+    query.bindValue(":Places", avto.getPlaces());
+    query.bindValue(":Vincode", avto.getVincode());
+    query.bindValue(":Color", avto.getColor());
 
-//    return true;
-//}
+    return true;
+}

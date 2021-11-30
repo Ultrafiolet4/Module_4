@@ -1,5 +1,6 @@
 #include "admin.h"
 #include <QSqlTableModel>
+#include "auto.h"
 #include "dbmanager.h"
 #include "sqlitedbmanager.h"
 #include "ui_admin.h"
@@ -40,8 +41,10 @@ Admin::~Admin()
 
 void Admin::on_add_pb_clicked()
 {
+    QString path;
+    Auto *temp = new Auto;
     QDialog *avto=new QDialog;
-    avto->setFixedSize(400,700);
+    avto->setFixedSize(500, 800);
 
     QVBoxLayout *m_lay=new QVBoxLayout(avto);
     QHBoxLayout *quality_lay=new QHBoxLayout(avto);
@@ -63,9 +66,10 @@ void Admin::on_add_pb_clicked()
     QHBoxLayout *doors_lay=new QHBoxLayout(avto);
     QHBoxLayout *places_lay=new QHBoxLayout(avto);
     QHBoxLayout *color_lay=new QHBoxLayout(avto);
+    QHBoxLayout *button_lay = new QHBoxLayout(avto);
+    QHBoxLayout *pathpicture_lay = new QHBoxLayout(avto);
 
-
-    QLabel *quality_lbl=new QLabel(avto);
+    QLabel *quality_lbl = new QLabel(avto);
     QLineEdit *quality_led=new QLineEdit(avto);
 
     QLabel *type_lbl=new QLabel(avto);
@@ -120,7 +124,13 @@ void Admin::on_add_pb_clicked()
     QLineEdit *places_led=new QLineEdit(avto);
 
     QLabel *color_lbl=new QLabel(avto);
-    QLineEdit *color_led=new QLineEdit(avto);
+    QLineEdit *color_led = new QLineEdit(avto);
+
+    QLabel *pathpicture_lbl = new QLabel(avto);
+    QFileDialog *pathpicture_fd = new QFileDialog(avto);
+
+    QPushButton *ok_pb = new QPushButton(avto);
+    QPushButton *cancel_pb = new QPushButton(avto);
 
     quality_lay->addWidget(quality_lbl);
     quality_lay->addWidget(quality_led);
@@ -179,6 +189,12 @@ void Admin::on_add_pb_clicked()
     color_lay->addWidget(color_lbl);
     color_lay->addWidget(color_led);
 
+    button_lay->addWidget(cancel_pb);
+    button_lay->addWidget(ok_pb);
+
+    pathpicture_lay->addWidget(pathpicture_lbl);
+    pathpicture_lay->addWidget(pathpicture_fd);
+
     quality_lbl->setText("Введіть якість:");
     type_lbl->setText("Введіть тип кузова:");
     country_lbl->setText("Введіть країну:");
@@ -198,7 +214,14 @@ void Admin::on_add_pb_clicked()
     doors_lbl->setText("Введіть кількість дверей:");
     places_lbl->setText("Введіть кількість місць:");
     color_lbl->setText("Введіть колір:");
+    pathpicture_lbl->setText("Виберіть фотографію:");
 
+    pathpicture_fd->setWindowTitle(tr("Вибрати фотографію:"));
+    pathpicture_fd->setDirectory(".");
+    pathpicture_fd->setFileMode(QFileDialog::ExistingFiles);
+    pathpicture_fd->setViewMode(QFileDialog::Detail);
+    ok_pb->setText("OK");
+    cancel_pb->setText("Cancel");
 
     m_lay->addItem(quality_lay);
     m_lay->addItem(type_lay);
@@ -219,9 +242,57 @@ void Admin::on_add_pb_clicked()
     m_lay->addItem(doors_lay);
     m_lay->addItem(places_lay);
     m_lay->addItem(color_lay);
-
+    m_lay->addItem(pathpicture_lay);
+    m_lay->addItem(button_lay);
 
     avto->setLayout(m_lay);
     avto->exec();
-}
 
+    connect(cancel_pb, &QPushButton::clicked, avto, &QDialog::close);
+    connect(ok_pb,
+            &QPushButton::clicked,
+            avto,
+            [quality_led,
+             type_led,
+             country_led,
+             marka_led,
+             model_led,
+             year_led,
+             price_led,
+             dtp_led,
+             stan_led,
+             fuel_led,
+             kpp_led,
+             drive_led,
+             fuelcost_led,
+             capacity_led,
+             power_led,
+             run_led,
+             doors_led,
+             places_led,
+             color_led,
+             temp]() {
+                temp->setQuality(quality_led->text());
+                temp->setType(type_led->text());
+                temp->setCountry(country_led->text());
+                temp->setMarka(marka_led->text());
+                temp->setModel(model_led->text());
+                temp->setYear(year_led->text().toInt());
+                temp->setPrice(price_led->text().toInt());
+                temp->setDtp(dtp_led->text());
+                temp->setStan(stan_led->text());
+                temp->setFuel(fuel_led->text());
+                temp->setKpp(kpp_led->text());
+                temp->setDrive(drive_led->text());
+                temp->setFuelcost(fuelcost_led->text().toInt());
+                temp->setCapacity(capacity_led->text().toInt());
+                temp->setPower(power_led->text().toInt());
+                temp->setRun(run_led->text().toInt());
+                temp->setDoors(doors_led->text().toInt());
+                temp->setPlaces(places_led->text().toInt());
+                temp->setColor(color_led->text());
+            });
+    if (pathpicture_fd->exec()) {
+        path = pathpicture_fd->selectedFiles();
+    }
+}
