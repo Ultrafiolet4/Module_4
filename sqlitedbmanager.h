@@ -26,7 +26,8 @@ public:
 
     void connectToDataBase();
     QSqlDatabase getDB();
-    bool inserIntoTable(Auto avto);
+    bool inserIntoTable(Auto *avto);
+    bool selectData(QString tablename);
 };
 
 #endif // SQLITEDBMANAGER_H

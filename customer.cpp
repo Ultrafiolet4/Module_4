@@ -6,6 +6,8 @@ Customer::Customer(QWidget *parent) :
     ui(new Ui::Customer)
 {
     ui->setupUi(this);
+    db=SqliteDBManager::getInstance();
+    all_avto=new All();
     styleButton=QString(
             "QAbstractButton {"
                     "color: rgb(255, 255, 255);"
@@ -118,7 +120,8 @@ void Customer::on_alternative_pb_clicked()
 
 void Customer::setValue_fromyear(int value)
 {
-    ui->first_sld->setMaximum(200000);
+    ui->first_sld->setMinimum(1800);
+    ui->first_sld->setMaximum(2100);
     value = ui->first_sld->value();
     QString text = QString::number(value);
     ui->fromyear_led->setText(text);
@@ -130,7 +133,8 @@ void Customer::setValue_fromyear(int value)
 
 void Customer::setValue_toyear(int value)
 {
-    ui->last_sld->setMaximum(200000);
+    ui->first_sld->setMinimum(1800);
+    ui->last_sld->setMaximum(2100);
     value = ui->last_sld->value();
     QString text = QString::number(value);
     ui->toyear_led->setText(text);
@@ -165,4 +169,10 @@ void Customer::setValue_toprice(int value)
 }
 
 
+
+
+void Customer::on_all_pb_clicked()
+{
+    all_avto->show();
+}
 

@@ -1,18 +1,14 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include <QComboBox>
 #include <QDebug>
 #include <QDialog>
-#include <QFileDialog>
-#include <QLabel>
-#include <QLineEdit>
 #include <QPainter>
-#include <QPushButton>
-#include <QScrollArea>
 #include <QSqlError>
 #include <QSqlQuery>
 #include <QWidget>
+#include "add.h"
+#include "customer.h"
 
 class QSqlTableModel;
 class DBManager;
@@ -35,12 +31,19 @@ public:
 private slots:
     void on_add_pb_clicked();
 
+    void on_select_pb_clicked();
+
+    void on_delete_pb_clicked();
+
+    void on_avto_vw_clicked(const QModelIndex &index);
+
 private:
     Ui::Admin *ui;
 
     DBManager *db;
     QSqlTableModel *model_avto, *model_postach, *model_zamovl;
-
+    Add *add_new;
+    int row;
 };
 
 #endif // ADMIN_H

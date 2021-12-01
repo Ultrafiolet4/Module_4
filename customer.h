@@ -5,6 +5,9 @@
 #include <QPainter>
 #include <QEvent>
 #include <QDialog>
+#include "dbmanager.h"
+#include "all.h"
+
 
 namespace Ui {
 class Customer;
@@ -26,11 +29,14 @@ private slots:
     void on_alternative_pb_clicked();
 
 
+    void on_all_pb_clicked();
+
 private:
     Ui::Customer *ui;
     QString styleButton;
     QColor from,to;
-
+    DBManager *db;
+    All *all_avto;
 
     void colorizeFirst(int color);
     void colorizeFirstPrice(int color);

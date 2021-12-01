@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Add</class>
+ <widget class="QDialog" name="Add">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>623</width>
+    <height>684</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Добавлення</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="quality_lay">
+     <item>
+      <widget class="QLabel" name="quality_lbl">
+       <property name="text">
+        <string>Введіть якість:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="quality_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="type_lay">
+     <item>
+      <widget class="QLabel" name="type_lbl">
+       <property name="text">
+        <string>Введіть тип кузова:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="type_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="country_lay">
+     <item>
+      <widget class="QLabel" name="country_lbl">
+       <property name="text">
+        <string>Введіть країну:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="country_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="marka_lay">
+     <item>
+      <widget class="QLabel" name="marka_lbl">
+       <property name="text">
+        <string>Введіть марка:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="marka_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="model_lay">
+     <item>
+      <widget class="QLabel" name="model_lbl">
+       <property name="text">
+        <string>Введіть модель:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="model_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="year_lay">
+     <item>
+      <widget class="QLabel" name="year_lbl">
+       <property name="text">
+        <string>Введіть рік:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="year_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="price_lay">
+     <item>
+      <widget class="QLabel" name="price_lbl">
+       <property name="text">
+        <string>Введіть ціна:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="price_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="dtp_lay">
+     <item>
+      <widget class="QLabel" name="dtp_lbl">
+       <property name="text">
+        <string>Введіть участь в дтп:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="dtp_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="stan_lay">
+     <item>
+      <widget class="QLabel" name="stan_lbl">
+       <property name="text">
+        <string>Введіть стан:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="stan_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="fuel_lay">
+     <item>
+      <widget class="QLabel" name="fuel_lbl">
+       <property name="text">
+        <string>Введіть тип палива:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="fuel_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="kpp_lay">
+     <item>
+      <widget class="QLabel" name="kpp_lbl">
+       <property name="text">
+        <string>Введіть тип коробки передач:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="kpp_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="drive_lay">
+     <item>
+      <widget class="QLabel" name="drive_lbl">
+       <property name="text">
+        <string>Введіть тип приводу:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="drive_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="fuelcost_lay">
+     <item>
+      <widget class="QLabel" name="fuelcost_lbl">
+       <property name="text">
+        <string>Введіть витрату палива на 100км:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="fuelcost_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="capacity_lay">
+     <item>
+      <widget class="QLabel" name="capacity_lbl">
+       <property name="text">
+        <string>Введіть об'єм:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="capacity_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="power_lay">
+     <item>
+      <widget class="QLabel" name="power_lbl">
+       <property name="text">
+        <string>Введіть потужність двигуна:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="power_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="run_lay">
+     <item>
+      <widget class="QLabel" name="run_lbl">
+       <property name="text">
+        <string>Введіть пробіг:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="run_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="doors_lay">
+     <item>
+      <widget class="QLabel" name="doors_lbl">
+       <property name="text">
+        <string>Введіть кількість дверей:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="doors_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="places_lay">
+     <item>
+      <widget class="QLabel" name="places_lbl">
+       <property name="text">
+        <string>Введіть кількість місць:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="places_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="vincode_lbl">
+       <property name="text">
+        <string>Введіть вінкод:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="vincode_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="color_lay">
+     <item>
+      <widget class="QLabel" name="color_lbl">
+       <property name="text">
+        <string>Введіть колір:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="color_led"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="pathpicture_lay">
+     <item>
+      <widget class="QLabel" name="pathpicture_lbl">
+       <property name="text">
+        <string>Виберіть фото:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="pathpicture_led"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pathpicture_pb">
+       <property name="text">
+        <string>Шлях</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="pb_lay">
+     <item>
+      <widget class="QPushButton" name="cancel_pb">
+       <property name="text">
+        <string>Відмінити</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ok_pb">
+       <property name="text">
+        <string>Підтвердити</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
