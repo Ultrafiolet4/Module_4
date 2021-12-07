@@ -1,13 +1,26 @@
 #include "customer.h"
 #include "ui_customer.h"
 
-Customer::Customer(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::Customer)
+Customer::Customer(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::Customer)
 {
     ui->setupUi(this);
     db=SqliteDBManager::getInstance();
     all_avto=new All();
+    new_avto = new Newavto();
+    old_avto = new OldAvto();
+    small_search=new SmallSearch();
+    large_search=new LargeSearch();
+
+    db->addComboData("marka", ui->name_cb);
+
+    model = new QSqlTableModel(this, db->getDB());
+    model->setTable("avto");
+}
+
+void Customer::paintEvent(QPaintEvent *)
+{
     styleButton=QString(
             "QAbstractButton {"
                     "color: rgb(255, 255, 255);"
@@ -23,151 +36,20 @@ Customer::Customer(QWidget *parent) :
                     "}");
 
     ui->all_pb->setStyleSheet(styleButton);
-    ui->alternative_pb->setStyleSheet(styleButton);
     ui->old_pb->setStyleSheet(styleButton);
     ui->new_pb->setStyleSheet(styleButton);
     ui->greatsearch_pb->setStyleSheet(styleButton);
     ui->search_pb->setStyleSheet(styleButton);
+    ui->exit_pb->setStyleSheet(styleButton);
 
-    ui->first_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->last_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->first2_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->last2_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->firstprice_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->lastprice_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->first2price_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->last2price_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->year_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-    ui->price_lbl->setStyleSheet("color: rgb(255, 255, 255)");
-
-    ui->first_sld->setMinimum(0);
-    ui->lastprice_sld->setMinimum(0);
-    ui->last_sld->setMinimum(0);
-    ui->firstprice_sld->setMinimum(0);
-    ui->first_sld->setMaximum(100);
-    ui->last_sld->setMaximum(100);
-    ui->firstprice_sld->setMaximum(100);
-    ui->first_sld->setMaximum(100);
-
-    connect(ui->first_sld, &QSlider::valueChanged, this, &Customer::colorizeFirst);
-    connect(ui->firstprice_sld, &QSlider::valueChanged, this, &Customer::colorizeFirstPrice);
-    connect(ui->last_sld, &QSlider::valueChanged, this, &Customer::colorizeLast);
-    connect(ui->lastprice_sld, &QSlider::valueChanged, this, &Customer::colorizeLastPrice);
-
-    connect(ui->first_sld,&QSlider::valueChanged,this,&Customer::setValue_fromyear);
-    connect(ui->last_sld,&QSlider::valueChanged,this,&Customer::setValue_toyear);
-    connect(ui->firstprice_sld,&QSlider::valueChanged,this,&Customer::setValue_fromprice);
-    connect(ui->lastprice_sld,&QSlider::valueChanged,this,&Customer::setValue_toprice);
-
-    colorizeFirst(ui->first_sld->value());
-    colorizeFirstPrice(ui->firstprice_sld->value());
-    colorizeLast(ui->last_sld->value());
-    colorizeLastPrice(ui->lastprice_sld->value());
-}
-
-void Customer::paintEvent(QPaintEvent *)
-{
     QPainter painter(this);
     painter.drawPixmap(this->rect(),QPixmap(":/img/customer.jpg").scaled(this->size()));
 }
 
-void Customer::colorizeFirst(int color)
-{
-          int difference = ui->first_sld->maximum() - ui->first_sld->minimum();
-          color = color - ui->first_sld->minimum();
-          qreal position = qreal(color) / difference;
-          QColor rgb = QColor::fromRgb(255 * position, 30, 180);
-          ui->first_sld->setStyleSheet(QString("QSlider::handle:horizontal {background-color: %1;}").arg(rgb.name()));
-}
-
-void Customer::colorizeFirstPrice(int color)
-{
-          int difference = ui->firstprice_sld->maximum() - ui->firstprice_sld->minimum();
-          color = color - ui->firstprice_sld->minimum();
-          qreal position = qreal(color) / difference;
-          QColor rgb = QColor::fromRgb(255 * position, 30, 180);
-          ui->firstprice_sld->setStyleSheet(QString("QSlider::handle:horizontal {background-color: %1;}").arg(rgb.name()));
-}
-
-void Customer::colorizeLast(int color)
-{
-          int difference = ui->last_sld->maximum() - ui->last_sld->minimum();
-          color = color - ui->last_sld->minimum();
-          qreal position = qreal(color) / difference;
-          QColor rgb = QColor::fromRgb(255 * position, 30, 180);
-          ui->last_sld->setStyleSheet(QString("QSlider::handle:horizontal {background-color: %1;}").arg(rgb.name()));
-}
-
-void Customer::colorizeLastPrice(int color)
-{
-          int difference = ui->lastprice_sld->maximum() - ui->lastprice_sld->minimum();
-          color = color - ui->lastprice_sld->minimum();
-          qreal position = qreal(color) / difference;
-          QColor rgb = QColor::fromRgb(255 * position, 30, 180);
-          ui->lastprice_sld->setStyleSheet(QString("QSlider::handle:horizontal {background-color: %1;}").arg(rgb.name()));
-}
 Customer::~Customer()
 {
     delete ui;
 }
-
-
-void Customer::on_alternative_pb_clicked()
-{
-
-
-}
-
-void Customer::setValue_fromyear(int value)
-{
-    ui->first_sld->setMinimum(1800);
-    ui->first_sld->setMaximum(2100);
-    value = ui->first_sld->value();
-    QString text = QString::number(value);
-    ui->fromyear_led->setText(text);
-    if(value==0)
-    {
-        ui->fromyear_led->setText("");
-    }
-}
-
-void Customer::setValue_toyear(int value)
-{
-    ui->first_sld->setMinimum(1800);
-    ui->last_sld->setMaximum(2100);
-    value = ui->last_sld->value();
-    QString text = QString::number(value);
-    ui->toyear_led->setText(text);
-    if(value==0)
-    {
-        ui->toyear_led->setText("");
-    }
-}
-
-void Customer::setValue_fromprice(int value)
-{
-    ui->firstprice_sld->setMaximum(200000);
-    value = ui->firstprice_sld->value();
-    QString text = QString::number(value);
-    ui->fromprice_led->setText(text);
-    if(value==0)
-    {
-        ui->fromprice_led->setText("");
-    }
-}
-
-void Customer::setValue_toprice(int value)
-{
-    ui->lastprice_sld->setMaximum(200000);
-    value = ui->lastprice_sld->value();
-    QString text = QString::number(value);
-    ui->toprice_led->setText(text);
-    if(value==0)
-    {
-        ui->toprice_led->setText("");
-    }
-}
-
 
 
 
@@ -176,3 +58,52 @@ void Customer::on_all_pb_clicked()
     all_avto->show();
 }
 
+
+void Customer::on_old_pb_clicked()
+{
+    old_avto->show();
+}
+
+void Customer::on_new_pb_clicked()
+{
+    new_avto->show();
+}
+
+
+
+void Customer::on_name_cb_activated(const QString &arg1)
+{
+    ui->model_cb->clear();
+    ui->model_cb->addItem("Модель автомобіля");
+    db->addModelData("model","marka","\""+arg1+"\"",ui->model_cb);
+}
+
+
+void Customer::on_search_pb_clicked()
+{
+    QString marka, model;
+    marka="\""+ui->name_cb->currentText()+"\"";
+    model="\""+ui->model_cb->currentText()+"\"";
+    if(ui->name_cb->currentText()!="Марка автомобіля")
+    {
+        small_search->getModel()->setFilter("marka="+marka);
+    }
+    if(ui->model_cb->currentText()!="Модель автомобіля")
+    {
+        small_search->getModel()->setFilter("model="+model);
+    }
+    small_search->show();
+}
+
+
+void Customer::on_greatsearch_pb_clicked()
+{
+    large_search->show();
+}
+
+
+void Customer::on_exit_pb_clicked()
+{
+    this->close();
+    emit firstWindow();
+}

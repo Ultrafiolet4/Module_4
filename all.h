@@ -1,13 +1,15 @@
 #ifndef ALL_H
 #define ALL_H
 
-#include <QDialog>
-#include "dbmanager.h"
-#include <QSqlTableModel>
-#include "sqlitedbmanager.h"
-#include <QLabel>
 #include <QDebug>
+#include <QDialog>
+#include <QLabel>
 #include <QPainter>
+#include <QSqlTableModel>
+#include "dbmanager.h"
+#include "dry.h"
+#include "idialog.h"
+#include "sqlitedbmanager.h"
 
 namespace Ui {
 class All;
@@ -26,11 +28,14 @@ private slots:
 
     void on_check_pb_clicked();
 
+    void on_zamovl_pb_clicked();
+
 private:
     Ui::All *ui;
     DBManager *db;
     int row;
     QSqlTableModel *model;
+    IDialog *inter;
 };
 
 #endif // ALL_H

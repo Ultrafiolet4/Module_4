@@ -9,6 +9,15 @@ Add::Add(QWidget *parent) :
     ui->setupUi(this);
     db=SqliteDBManager::getInstance();
     db->connectToDataBase();
+
+    QString yearMask = "[0-9]{0,4}";
+    QRegExp yearRegExp(yearMask);
+    QRegExpValidator *yearValidator = new QRegExpValidator(yearRegExp, this);
+    ui->year_led->setValidator(yearValidator);
+    QString VincodeMask = "^(\\d|[A-Z]){10,50}$";
+    QRegExp VincodeRegExp(VincodeMask);
+    QRegExpValidator *VincodeValidator = new QRegExpValidator(VincodeRegExp, this);
+    ui->vincode_led->setValidator(VincodeValidator);
 }
 
 void Add::paintEvent(QPaintEvent *)
@@ -33,10 +42,12 @@ void Add::paintEvent(QPaintEvent *)
     ui->places_lbl->setStyleSheet("color: rgb(255, 255, 255)");
     ui->color_lbl->setStyleSheet("color: rgb(255, 255, 255)");
     ui->pathpicture_lbl->setStyleSheet("color: rgb(255, 255, 255)");
+    ui->vincode_lbl->setStyleSheet("color: rgb(255, 255, 255)");
 
     QPainter painter(this);
     painter.drawPixmap(this->rect(),QPixmap(":/img/customerblue.png").scaled(this->size()));
 }
+
 
 Add::~Add()
 {
@@ -45,6 +56,27 @@ Add::~Add()
 
 void Add::on_cancel_pb_clicked()
 {
+    ui->quality_led->setText("");
+    ui->type_led->setText("");
+    ui->country_led->setText("");
+    ui->marka_led->setText("");
+    ui->model_led->setText("");
+    ui->year_led->setText("");
+    ui->price_led->setText("");
+    ui->dtp_led->setText("");
+    ui->stan_led->setText("");
+    ui->fuel_led->setText("");
+    ui->kpp_led->setText("");
+    ui->drive_led->setText("");
+    ui->fuelcost_led->setText("");
+    ui->capacity_led->setText("");
+    ui->power_led->setText("");
+    ui->run_led->setText("");
+    ui->doors_led->setText("");
+    ui->places_led->setText("");
+    ui->color_led->setText("");
+    ui->vincode_led->setText("");
+    ui->pathpicture_led->setText("");
     this->close();
 }
 
@@ -74,14 +106,44 @@ void Add::on_ok_pb_clicked()
     temp->setPathPicture(ui->pathpicture_led->text());
 
     db->inserIntoTable(temp);
+
+    ui->quality_led->setText("");
+    ui->type_led->setText("");
+    ui->country_led->setText("");
+    ui->marka_led->setText("");
+    ui->model_led->setText("");
+    ui->year_led->setText("");
+    ui->price_led->setText("");
+    ui->dtp_led->setText("");
+    ui->stan_led->setText("");
+    ui->fuel_led->setText("");
+    ui->kpp_led->setText("");
+    ui->drive_led->setText("");
+    ui->fuelcost_led->setText("");
+    ui->capacity_led->setText("");
+    ui->power_led->setText("");
+    ui->run_led->setText("");
+    ui->doors_led->setText("");
+    ui->places_led->setText("");
+    ui->color_led->setText("");
+    ui->vincode_led->setText("");
+    ui->pathpicture_led->setText("");
     this->close();
 }
-
 
 void Add::on_pathpicture_pb_clicked()
 {
     QFileDialog *path=new QFileDialog(this);
-    path->show();
-    ui->pathpicture_led->setText(path->getOpenFileName());
+    QString tempPhotoPath=path->getOpenFileName();
+    ui->pathpicture_led->setText(tempPhotoPath.right(tempPhotoPath.length() - tempPhotoPath.lastIndexOf("img/")));
 }
 
+void Add::on_quality_led_editingFinished()
+{
+    if(ui->quality_led->text()=="Нова")
+    {
+        ui->dtp_led->setText("Не був в ДТП");
+        ui->run_led->setText("0");
+        ui->stan_led->setText("Повністю непошкоджене");
+    }
+}

@@ -11,35 +11,57 @@ CONFIG += c++11
 
 SOURCES += \
     add.cpp \
-    add_postach.cpp \
+    addnew.cpp \
     admin.cpp \
     all.cpp \
     auto.cpp \
     customer.cpp \
     dbmanager.cpp \
+    dry.cpp \
+    idialog.cpp \
+    largesearch.cpp \
+    largesearchmodel.cpp \
+    log.cpp \
     main.cpp \
     mainwindow.cpp \
+    newavto.cpp \
+    oldavto.cpp \
+    smallsearch.cpp \
     sqlitedbmanager.cpp
 
 HEADERS += \
     add.h \
-    add_postach.h \
+    addnew.h \
     admin.h \
     all.h \
     auto.h \
     customer.h \
     dbmanager.h \
+    dry.h \
+    idialog.h \
+    largesearch.h \
+    largesearchmodel.h \
+    log.h \
     mainwindow.h \
+    newavto.h \
+    oldavto.h \
+    smallsearch.h \
     sqlitedbmanager.h
 
 FORMS += \
     add.ui \
-    add_postach.ui \
+    addnew.ui \
     admin.ui \
     all.ui \
     customer.ui \
-    mainwindow.ui
+    largesearch.ui \
+    largesearchmodel.ui \
+    mainwindow.ui \
+    newavto.ui \
+    oldavto.ui \
+    smallsearch.ui
 
+win32:RC_FILE = icon.rc
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -47,3 +69,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     Files.qrc
+
+CONFIG(release, debug | release)
+{
+  win32:QMAKE_POST_LINK = $$(QTDIR)/bin/windeployqt $$OUT_PWD/release
+}

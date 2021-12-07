@@ -14,22 +14,50 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QFormLayout" name="formLayout">
-    <item row="0" column="1">
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="login_lbl">
+      <property name="text">
+       <string>Логін</string>
       </property>
-      <widget class="QPushButton" name="admin_pb">
-       <property name="text">
-        <string>Admin</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="customer_pb">
-       <property name="text">
-        <string>Customer</string>
-       </property>
-      </widget>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="login_led"/>
+    </item>
+    <item>
+     <widget class="QLabel" name="password_lbl">
+      <property name="text">
+       <string>Пароль</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="password_led">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="admin_pb">
+      <property name="text">
+       <string>Зайти</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="newadm_pb">
+      <property name="text">
+       <string>Зареєструвати нового адміністратора</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="customer_pb">
+      <property name="text">
+       <string>Зайти як користувач</string>
+      </property>
      </widget>
     </item>
    </layout>

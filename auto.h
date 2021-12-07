@@ -5,7 +5,8 @@
 class Auto
 {
     QString marka,model,quality,country,type,dtp,pathpicture,stan,kpp,fuel,drive,color,vincode;
-    int year, price, fuelcost, capacity, power, run, doors, places;
+    int year, price, power, run, doors, places;
+    float fuelcost, capacity;
 
 public:
     Auto();
@@ -24,8 +25,8 @@ public:
     QString getVincode();
     int getYear();
     int getPrice();
-    int getFuelcost();
-    int getCapacity();
+    float getFuelcost();
+    float getCapacity();
     int getPower();
     int getRun();
     int getDoors();
@@ -46,8 +47,8 @@ public:
     void setVincode(QString vincode);
     void setYear(int year);
     void setPrice(int price);
-    void setFuelcost(int fuelcost);
-    void setCapacity(int capacity);
+    void setFuelcost(float fuelcost);
+    void setCapacity(float capacity);
     void setPower(int power);
     void setRun(int run);
     void setDoors(int doors);

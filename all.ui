@@ -30,6 +30,13 @@
      </property>
     </widget>
    </item>
+   <item>
+    <widget class="QPushButton" name="zamovl_pb">
+     <property name="text">
+      <string>Замовити</string>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources/>

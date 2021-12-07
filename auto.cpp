@@ -1,6 +1,10 @@
 #include "auto.h"
 
-Auto::Auto(){
+Auto::Auto():marka("\0"),model("\0"),quality("\0"),country("\0"),type("\0"),dtp("\0"),pathpicture("\0"),
+    stan("\0"),kpp("\0"),fuel("\0"),drive("\0"),
+    color("\0"),year(0),vincode("\0"),price(0),fuelcost(0),
+    capacity(0),power(0),run(0),doors(0),places(0)
+{
 
 }
 
@@ -60,11 +64,13 @@ void Auto::setPrice(int price){
     this->price=price;
 }
 
-void Auto::setFuelcost(int fuelcost){
+void Auto::setFuelcost(float fuelcost)
+{
     this->fuelcost=fuelcost;
 }
 
-void Auto::setCapacity(int capacity){
+void Auto::setCapacity(float capacity)
+{
     this->capacity=capacity;
 }
 
@@ -88,6 +94,8 @@ void Auto::setYear(int year)
 {
     this->year = year;
 }
+
+
 
 QString Auto::getMarka(){
     return marka;
@@ -147,11 +155,13 @@ int Auto::getPrice(){
     return price;
 }
 
-int Auto::getFuelcost(){
+float Auto::getFuelcost()
+{
     return fuelcost;
 }
 
-int Auto::getCapacity(){
+float Auto::getCapacity()
+{
     return capacity;
 }
 
